@@ -1,0 +1,871 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+:root {
+  --black: #0d0d0d;
+  --charcoal: #1c1c1c;
+  --orange: #e85d04;
+  --amber: #f4a261;
+  --cream: #fdf6ee;
+  --cream-dark: #f5ece0;
+  --gray: #4a4a4a;
+  --white: #ffffff;
+  --max: 1140px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.apf-wrap { font-family: 'Inter', sans-serif; color: var(--gray); background: var(--cream); line-height: 1.6; }
+.apf-wrap a { text-decoration: none; color: inherit; }
+
+/* HERO */
+.apf-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 80px 32px;
+}
+.apf-hero-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url('BACKGROUND_IMAGE_URL_YAHAN');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+.apf-hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(13,13,13,0.92) 0%, rgba(13,13,13,0.75) 100%);
+  z-index: 1;
+}
+.apf-hero-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 60px;
+  align-items: center;
+}
+.apf-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(232,93,4,0.12);
+  border: 1px solid rgba(232,93,4,0.3);
+  color: var(--orange);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 2px;
+  margin-bottom: 24px;
+}
+.apf-hero h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(48px, 6vw, 82px);
+  font-weight: 800;
+  line-height: 1.0;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.apf-hero h1 em { font-style: normal; color: var(--orange); }
+.apf-hero-sub {
+  font-size: 16px;
+  color: #999;
+  max-width: 480px;
+  margin-bottom: 36px;
+  line-height: 1.7;
+}
+.apf-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+.apf-btn-primary {
+  background: var(--orange);
+  color: var(--white);
+  padding: 14px 28px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  display: inline-block;
+  transition: background 0.2s;
+}
+.apf-btn-primary:hover { background: var(--amber); color: var(--black); }
+.apf-btn-ghost {
+  border: 1px solid #444;
+  color: #aaa;
+  padding: 14px 28px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 4px;
+  display: inline-block;
+}
+.apf-btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+.apf-hero-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.apf-stat-item { text-align: left; }
+.apf-stat-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--orange);
+  line-height: 1;
+}
+.apf-stat-label {
+  font-size: 11px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* CEO CARD */
+.apf-ceo-card {
+  position: relative;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+.apf-ceo-photo-wrap {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 24px;
+}
+.apf-ceo-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--orange);
+  display: block;
+}
+.apf-ceo-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.apf-ceo-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.apf-ceo-title {
+  font-size: 12px;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.apf-ceo-desc {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.apf-ceo-socials {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+.apf-ceo-socials a {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #666;
+  transition: border-color 0.2s, color 0.2s;
+}
+.apf-ceo-socials a:hover { border-color: var(--orange); color: var(--orange); }
+
+/* LOGO IN HEADER */
+.apf-logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ABOUT SECTION */
+.apf-about {
+  background: var(--cream);
+  padding: 100px 32px;
+}
+.apf-about-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.apf-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+.apf-about h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--black);
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+.apf-about p { font-size: 15px; color: var(--gray); margin-bottom: 16px; line-height: 1.8; }
+.apf-text-link {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--orange);
+  border-bottom: 2px solid var(--orange);
+  padding-bottom: 2px;
+  display: inline-block;
+}
+.apf-about-img {
+  height: 420px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.apf-about-img::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 4px;
+  background: var(--orange);
+  z-index: 1;
+}
+.apf-about-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* SERVICES */
+.apf-services { background: var(--black); padding: 100px 32px; }
+.apf-services-head { max-width: var(--max); margin: 0 auto 60px; display: flex; justify-content: space-between; align-items: flex-end; }
+.apf-services-head h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 52px; font-weight: 800; text-transform: uppercase; color: var(--white); line-height: 1.05; }
+.apf-services-head p { font-size: 14px; color: #666; max-width: 280px; text-align: right; line-height: 1.7; }
+.apf-services-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+.apf-svc-card { background: #141414; border: 1px solid #222; padding: 36px 28px; transition: border-color 0.2s; }
+.apf-svc-card:hover { border-color: var(--orange); }
+.apf-svc-num { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; color: var(--orange); letter-spacing: 2px; margin-bottom: 24px; }
+.apf-svc-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; text-transform: uppercase; color: var(--white); margin-bottom: 12px; }
+.apf-svc-card p { font-size: 13px; color: #666; line-height: 1.7; }
+
+/* WHY US */
+.apf-why { background: var(--cream); padding: 100px 32px; }
+.apf-why-inner { max-width: var(--max); margin: 0 auto; }
+.apf-why-head { text-align: center; margin-bottom: 64px; }
+.apf-why-head h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 52px; font-weight: 800; text-transform: uppercase; color: var(--black); }
+.apf-why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.apf-why-item { border-top: 2px solid var(--cream-dark); padding-top: 24px; transition: border-color 0.2s; }
+.apf-why-item:hover { border-color: var(--orange); }
+.apf-why-item h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; text-transform: uppercase; color: var(--black); margin-bottom: 10px; }
+.apf-why-item p { font-size: 13.5px; color: var(--gray); line-height: 1.7; }
+
+/* TESTIMONIALS */
+.apf-testi { background: var(--charcoal); padding: 100px 32px; }
+.apf-testi-head { max-width: var(--max); margin: 0 auto 56px; text-align: center; }
+.apf-testi-head h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 52px; font-weight: 800; text-transform: uppercase; color: var(--white); }
+.apf-testi-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.apf-testi-card { background: #222; border: 1px solid #2e2e2e; padding: 36px 28px; }
+.apf-testi-card .apf-quote-mark { font-family: 'Barlow Condensed', sans-serif; font-size: 64px; color: var(--orange); line-height: 0.8; margin-bottom: 16px; display: block; }
+.apf-testi-card p { font-size: 14px; color: #aaa; line-height: 1.8; margin-bottom: 24px; }
+.apf-testi-person { display: flex; align-items: center; gap: 12px; }
+.apf-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: white; flex-shrink: 0; }
+.apf-testi-name { font-size: 14px; font-weight: 600; color: var(--white); }
+.apf-testi-role { font-size: 12px; color: #666; }
+
+/* PORTFOLIO */
+.apf-portfolio { background: var(--cream); padding: 100px 32px; }
+.apf-portfolio-head { max-width: var(--max); margin: 0 auto 56px; display: flex; justify-content: space-between; align-items: flex-end; }
+.apf-portfolio-head h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 52px; font-weight: 800; text-transform: uppercase; color: var(--black); }
+.apf-portfolio-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.apf-port-item { height: 240px; border-radius: 4px; overflow: hidden; position: relative; border: 1px solid #e0d5c8; transition: border-color 0.2s; }
+.apf-port-item:hover { border-color: var(--orange); }
+.apf-port-item img { width: 100%; height: 100%; object-fit: cover; }
+.apf-port-item::after { content: 'View Project'; position: absolute; bottom: -40px; left: 0; right: 0; text-align: center; background: var(--orange); color: white; font-size: 12px; font-weight: 700; text-transform: uppercase; padding: 12px; transition: bottom 0.3s; }
+.apf-port-item:hover::after { bottom: 0; }
+
+/* FAQ */
+.apf-faq { background: var(--black); padding: 100px 32px; }
+.apf-faq-inner { max-width: 760px; margin: 0 auto; }
+.apf-faq-head { text-align: center; margin-bottom: 56px; }
+.apf-faq-head h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 52px; font-weight: 800; text-transform: uppercase; color: var(--white); }
+.apf-faq-item { border-bottom: 1px solid #222; padding: 20px 0; }
+.apf-faq-item summary { font-size: 16px; font-weight: 600; color: var(--white); cursor: pointer; list-style: none; position: relative; padding-right: 32px; }
+.apf-faq-item summary::-webkit-details-marker { display: none; }
+.apf-faq-item summary::after { content: "+"; position: absolute; right: 0; top: 0; color: var(--orange); font-size: 22px; }
+.apf-faq-item[open] summary::after { content: "x"; font-size: 16px; }
+.apf-faq-item p { margin-top: 12px; font-size: 14px; color: #666; line-height: 1.8; }
+
+/* CTA */
+.apf-cta-section { background: var(--orange); padding: 100px 32px; text-align: center; position: relative; overflow: hidden; }
+.apf-cta-section::before { content: 'START'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Barlow Condensed', sans-serif; font-size: 200px; font-weight: 800; color: rgba(0,0,0,0.06); white-space: nowrap; pointer-events: none; }
+.apf-cta-section h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 64px; font-weight: 800; text-transform: uppercase; color: var(--white); line-height: 1.0; margin-bottom: 16px; position: relative; }
+.apf-cta-section p { font-size: 16px; color: rgba(255,255,255,0.8); margin-bottom: 36px; position: relative; }
+.apf-btn-dark { background: var(--black); color: var(--white); padding: 16px 36px; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-radius: 4px; display: inline-block; }
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+.apf-hero-content { animation: fadeInUp 0.8s ease forwards; }
+.apf-ceo-card { animation: fadeInRight 0.8s ease 0.3s both; }
+.apf-ceo-photo { animation: float 3s ease-in-out infinite; }
+.apf-nav-btn { animation: pulse 2s ease-in-out infinite; }
+.apf-svc-card { transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; }
+.apf-svc-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(232,93,4,0.15); }
+.apf-why-item { transition: all 0.3s; }
+.apf-why-item:hover { transform: translateY(-4px); }
+.apf-port-item { transition: all 0.3s; }
+.apf-port-item:hover { transform: scale(1.02); }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .apf-hero-inner { grid-template-columns: 1fr; }
+  .apf-ceo-card { max-width: 320px; margin: 0 auto; }
+  .apf-about-inner { grid-template-columns: 1fr; }
+  .apf-services-grid { grid-template-columns: repeat(2, 1fr); }
+  .apf-why-grid { grid-template-columns: repeat(2, 1fr); }
+  .apf-testi-grid { grid-template-columns: 1fr 1fr; }
+  .apf-portfolio-grid { grid-template-columns: 1fr 1fr; }
+  .apf-services-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .apf-services-head p { text-align: left; }
+}
+@media (max-width: 640px) {
+  .apf-hero h1 { font-size: 48px; }
+  .apf-services-grid, .apf-why-grid, .apf-testi-grid, .apf-portfolio-grid { grid-template-columns: 1fr; }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --black: #0d0d0d;
+  --orange: #e85d04;
+  --amber: #f4a261;
+  --white: #ffffff;
+  --max: 1140px;
+}
+
+.apf-header {
+  background: var(--black);
+  border-bottom: 1px solid #222;
+  width: 100%;
+}
+
+.apf-nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.apf-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.apf-logo img {
+  height: 70px;
+  width: auto;
+  margin-right: 15px;
+}
+
+.apf-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.apf-logo-top {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.apf-logo-bottom {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 70;
+  letter-spacing: 1px;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+.apf-nav-links {
+  list-style: none;
+  display: flex;
+  gap: 36px;
+}
+
+.apf-nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--orange);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.apf-nav-links a:hover {
+  color: var(--white);
+}
+
+@media (max-width: 768px) {
+  .apf-nav-links {
+    display: none;
+  }
+
+  .apf-logo img {
+    height: 42px;
+  }
+
+  .apf-logo-top {
+    font-size: 18px;
+  }
+
+  .apf-logo-bottom {
+    font-size: 13px;
+  }
+}
+
+
+
+:root {
+  --black: #0d0d0d;
+  --orange: #e85d04;
+  --white: #ffffff;
+  --max: 1140px;
+}
+
+.apf-footer {
+  background: var(--black);
+  color: #666;
+  padding: 72px 32px 0;
+  border-top: 1px solid #1a1a1a;
+}
+.apf-footer-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.4fr;
+  gap: 48px;
+  padding-bottom: 56px;
+}
+.apf-footer-grid h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #444;
+  margin-bottom: 20px;
+}
+.apf-footer-grid p { font-size: 13px; line-height: 1.8; }
+.apf-footer-grid ul { list-style: none; }
+.apf-footer-grid ul li { margin-bottom: 12px; font-size: 13px; }
+.apf-footer-grid ul li a {
+  text-decoration: none;
+  color: #666;
+  transition: color 0.2s;
+}
+.apf-footer-grid ul li a:hover { color: var(--orange); }
+.apf-footer-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 14px;
+  display: block;
+  text-decoration: none;
+}
+.apf-footer-logo span { color: var(--orange); }
+.apf-social-row { display: flex; gap: 10px; margin-top: 20px; }
+.apf-social-row a {
+  width: 36px; height: 36px;
+  border: 1px solid #222;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700;
+  color: #555;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.apf-social-row a:hover { border-color: var(--orange); color: var(--orange); }
+.apf-footer-bottom {
+  border-top: 1px solid #151515;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #ffffff;
+}
+@media (max-width: 960px) {
+  .apf-footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .apf-footer-grid { grid-template-columns: 1fr; }
+}
+
+
+
+</style>
+<body>
+<div class="apf-header">
+  <div class="apf-nav-inner">
+
+    
+
+      <div class="apf-logo-text">
+        <div class="apf-logo-top">AN</div>
+        <div class="apf-logo-bottom">PixelForge</div>
+      </div>
+    </a>
+
+    <ul class="apf-nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+  </div>
+</div>
+
+
+<div class="apf-wrap">
+
+  <!-- HERO SECTION -->
+
+  <div class="apf-hero">
+    <div class="apf-hero-bg"></div>
+    <div class="apf-hero-overlay"></div>
+    <div class="apf-hero-inner">
+
+      <!-- LEFT SIDE — Main Content -->
+      <div class="apf-hero-content">
+        <div class="apf-hero-tag">Pakistan Based Digital Agency</div>
+        <h1>We Build<br><em>Brands</em> That<br>Get Results</h1>
+        <p class="apf-hero-sub">AN PixelForge helps businesses build a strong digital presence through web design, SEO, social media marketing, and branding that actually drives growth.</p>
+        <div class="apf-hero-btns">
+          <a href="contact.html" class="apf-btn-primary">Start Your Project</a>
+          <a href="portfolio.html" class="apf-btn-ghost">View Our Work</a>
+        </div>
+        <div class="apf-hero-stats">
+          <div class="apf-stat-item">
+            <div class="apf-stat-num">5+</div>
+            <div class="apf-stat-label">Years Experience</div>
+          </div>
+          <div class="apf-stat-item">
+            <div class="apf-stat-num">120</div>
+            <div class="apf-stat-label">Projects Delivered</div>
+          </div>
+          <div class="apf-stat-item">
+            <div class="apf-stat-num">98%</div>
+            <div class="apf-stat-label">Client Satisfaction</div>
+          </div>
+          <div class="apf-stat-item">
+            <div class="apf-stat-num">40+</div>
+            <div class="apf-stat-label">Happy Clients</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE — CEO Card with Photo -->
+      <div class="apf-ceo-card">
+        <div class="apf-ceo-photo-wrap">
+          <img
+            src="WhatsApp Image 2026-08-10 at 9.29.36 PM.jpeg" class="apf-ceo-photo"
+           >
+           
+           
+          <span class="apf-ceo-badge">CEO</span>
+        </div>
+       
+       
+        <p class="apf-ceo-desc"> <div class="apf-ceo-name">Aqsa Noor</div>
+<div class="apf-ceo-title">Founder and CEO, AN PixelForge</div>
+<p class="apf-ceo-desc">
+  At AN PixelForge, my vision is simple 
+  to make professional digital services 
+  accessible to every business, big or small. 
+  I believe every brand deserves a strong 
+  online presence, and I am here to make 
+  that happen through creativity, strategy, 
+  and real results.
+</p></p>
+        <div class="apf-ceo-socials">
+          <a href="#">IG</a>
+          <a href="#">LN</a>
+          <a href="#">FB</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ABOUT SECTION -->
+  <div class="apf-about">
+    <div class="apf-about-inner">
+      <div>
+        <div class="apf-section-label">Who We Are</div>
+        <h2>A Studio Built Around Your Growth</h2>
+        <p>AN PixelForge is a Pakistan based creative digital agency. We help small and growing businesses build a strong online presence from the first line of code to the last marketing campaign.</p>
+        <p>No jargon, no guesswork, just results you can measure and growth you can see.</p>
+        <a href="about.html" class="apf-text-link">Learn More About Us</a>
+      </div>
+      <div class="apf-about-img">
+        <img src="WhatsApp-Image-2026-06-25-at-6.56.37-AM-300x300.jpeg" alt="AN PixelForge Team">
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES SECTION -->
+  <div class="apf-services">
+    <div class="apf-services-head">
+      <div>
+        <div class="apf-section-label" style="color:var(--orange);">What We Do</div>
+        <h2>Services Built<br>Around Your Goals</h2>
+      </div>
+      <p>From your first website to full scale marketing, we cover every digital need under one roof.</p>
+    </div>
+    <div class="apf-services-grid">
+      <div class="apf-svc-card"><div class="apf-svc-num">01</div><h3>Web Development</h3><p>Fast, responsive websites built to convert visitors into paying customers.</p></div>
+      <div class="apf-svc-card"><div class="apf-svc-num">02</div><h3>Search Engine Optimization</h3><p>Get found on Google with strategies that bring consistent organic traffic.</p></div>
+      <div class="apf-svc-card"><div class="apf-svc-num">03</div><h3>Social Media Marketing</h3><p>Grow your audience and engagement across Instagram, TikTok, and more.</p></div>
+      <div class="apf-svc-card"><div class="apf-svc-num">04</div><h3>Brand Identity Design</h3><p>Logos, color systems, and brand identities that people recognize and remember.</p></div>
+    </div>
+  </div>
+
+  <!-- WHY CHOOSE US -->
+  <div class="apf-why">
+    <div class="apf-why-inner">
+      <div class="apf-why-head">
+        <div class="apf-section-label">Why Choose Us</div>
+        <h2>What Makes AN PixelForge Different</h2>
+      </div>
+      <div class="apf-why-grid">
+        <div class="apf-why-item"><h3>Proven Experience</h3><p>5 plus years delivering projects across multiple industries with measurable results.</p></div>
+        <div class="apf-why-item"><h3>Real Results</h3><p>Every project is tracked against clear goals so you always know what you are getting.</p></div>
+        <div class="apf-why-item"><h3>Ongoing Support</h3><p>We do not disappear after launch. We stay for the long run and support your growth.</p></div>
+        <div class="apf-why-item"><h3>Fair Pricing</h3><p>Transparent packages with no hidden costs. You know exactly what you pay for.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="apf-testi">
+    <div class="apf-testi-head">
+      <div class="apf-section-label">Client Feedback</div>
+      <h2>What Our Clients Say</h2>
+    </div>
+    <div class="apf-testi-grid">
+      <div class="apf-testi-card">
+        <span class="apf-quote-mark">"</span>
+        <p>AN PixelForge redesigned our website and our client inquiries doubled within one month of launch.</p>
+        <div class="apf-testi-person"><div class="apf-avatar">SA</div><div><div class="apf-testi-name">Noshaba Sultan</div><div class="apf-testi-role">Boutique Owner</div></div></div>
+      </div>
+      <div class="apf-testi-card">
+        <span class="apf-quote-mark">"</span>
+        <p>Professional, fast, and genuinely invested in our growth. I would recommend them to any business owner.</p>
+        <div class="apf-testi-person"><div class="apf-avatar">BK</div><div><div class="apf-testi-name">Asia bano</div><div class="apf-testi-role">Restaurant Owner</div></div></div>
+      </div>
+      <div class="apf-testi-card">
+        <span class="apf-quote-mark">"</span>
+        <p>Our social media following grew three times over after working with their marketing team. Incredible results.</p>
+        <div class="apf-testi-person"><div class="apf-avatar">HF</div><div><div class="apf-testi-name">Amna Hussain</div><div class="apf-testi-role">Startup Founder</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PORTFOLIO PREVIEW -->
+  <div class="apf-portfolio">
+    <div class="apf-portfolio-head">
+      <div>
+        <div class="apf-section-label">Our Work</div>
+        <h2>Recent Projects</h2>
+    <div class="apf-portfolio-grid">
+
+  <!-- PROJECT 1 — VS Code Website Screenshot -->
+  <a href="PROJECT_1_LINK_YAHAN" 
+  target="_blank" 
+  class="apf-port-item" 
+  style="display:block;text-decoration:none;">
+    <img src="WhatsApp-Image-2026-02-15-at-8.28.50-AM-300x169.jpeg" 
+    alt="Project 1"
+    style="width:100%;height:100%;object-fit:cover;object-position:top;">
+  </a>
+
+  <!-- PROJECT 2 — Canva PDF -->
+  <a href="https://drive.google.com/file/d/1wC0eU4Ozi7l4eHLNDXG1Gu3o_atjwGhB/view?" 
+  target="_blank" 
+  class="apf-port-item" 
+  style="display:block;text-decoration:none;">
+    <img src="WhatsApp-Image-2026-02-15-at-8.28.55-AM-1-300x169.jpeg" 
+    alt="Canva Presentation"
+    style="width:100%;height:100%;object-fit:cover;object-position:top;">
+  </a>
+
+  <!-- PROJECT 3 -->
+  <a href="PROJECT_3_LINK_YAHAN" 
+  target="_blank" 
+  class="apf-port-item" 
+  style="display:block;text-decoration:none;">
+    <img src="WhatsApp-Image-2026-06-25-at-10.40.52-PM-300x166.jpeg" 
+    alt="Project 3"
+    style="width:100%;height:100%;object-fit:cover;object-position:top;">
+  </a>
+
+</div><br>
+
+  <!-- FAQ -->
+  <div class="apf-faq">
+    <div class="apf-faq-inner">
+      <div class="apf-faq-head">
+        <div class="apf-section-label">Got Questions</div>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <details class="apf-faq-item" open>
+        <summary>How long does a typical website project take?</summary>
+        <p>Most websites take 2 to 4 weeks depending on complexity, from design approval to final launch.</p>
+      </details>
+      <details class="apf-faq-item">
+        <summary>Do you offer ongoing support after launch?</summary>
+        <p>Yes, we offer monthly maintenance and support packages to keep your site updated and secure.</p>
+      </details>
+      <details class="apf-faq-item">
+        <summary>Can you work with a limited budget?</summary>
+        <p>Absolutely. We offer tiered packages so businesses of any size can get started with us.</p>
+      </details>
+      <details class="apf-faq-item">
+        <summary>Do you only work with local clients?</summary>
+        <p>No, we work with clients across Pakistan and internationally. Everything is handled remotely.</p>
+      </details>
+    </div>
+  </div>
+
+  <!-- FINAL CTA -->
+  <div class="apf-cta-section">
+    <h2>Ready To Grow Your Business?</h2>
+    <p>Let us build something great together. Book your free consultation today.</p>
+    <a href="contact.html" class="apf-btn-dark">Book Free Consultation</a>
+  </div>
+
+</div>
+</div>
+
+<!--footer-->
+<div class="apf-footer">
+  <div class="apf-footer-grid">
+    <div>
+      <a href="home.html" class="apf-footer-logo">AN <span>PixelForge</span></a>
+      <p>A digital agency helping businesses build websites, brands, and marketing strategies that actually grow revenue.</p>
+      <div class="apf-social-row">
+        <a href="#">IG</a>
+        <a href="#">FB</a>
+        <a href="#">LN</a>
+      </div>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="services.html">Web Development</a></li>
+        <li><a href="services.html">SEO</a></li>
+        <li><a href="services.html">Social Media</a></li>
+        <li><a href="services.html">Branding</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li>Bhakkar, Punjab, Pakistan</li>
+        <li>+92 0000000000</li>
+        <li>noor666@gmail.com</li>
+      </ul>
+    </div>
+  </div>
+  <div class="apf-footer-bottom">
+    <span>2026 AN PixelForge. All rights reserved.</span>
+    <span>Designed by AN PixelForge</span>
+  </div>
+</body>
+</html>

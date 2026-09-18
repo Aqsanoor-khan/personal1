@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - AN PixelForge</title>
+  
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+:root {
+  --black: #0d0d0d; --charcoal: #1c1c1c; --orange: #e85d04;
+  --cream: #fdf6ee; --cream-dark: #f5ece0; --gray: #4a4a4a; --white: #ffffff; --max: 1140px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.apf-wrap { font-family: 'Inter', sans-serif; color: var(--gray); background: var(--cream); line-height: 1.6; }
+.apf-wrap a { text-decoration: none; color: inherit; }
+.apf-section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+
+.apf-page-hero { background: var(--black); padding: 80px 32px; position: relative; overflow: hidden; }
+.apf-page-hero-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Barlow Condensed', sans-serif; font-size: 180px; font-weight: 800; color: transparent; -webkit-text-stroke: 1px #1a1a1a; white-space: nowrap; pointer-events: none; text-transform: uppercase; }
+.apf-page-hero-inner { max-width: var(--max); margin: 0 auto; position: relative; z-index: 2; }
+.apf-page-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+.apf-page-hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(48px, 6vw, 80px); font-weight: 800; text-transform: uppercase; color: var(--white); line-height: 1.0; max-width: 700px; }
+.apf-page-hero p { font-size: 16px; color: #888; margin-top: 20px; max-width: 520px; line-height: 1.7; }
+
+.apf-blog-section { padding: 100px 32px; background: var(--cream); }
+.apf-blog-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 60px; }
+.apf-blog-head { margin-bottom: 48px; }
+.apf-blog-head h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 48px; font-weight: 800; text-transform: uppercase; color: var(--black); }
+.apf-blog-grid { display: flex; flex-direction: column; gap: 32px; }
+.apf-blog-card { background: var(--cream-dark); border: 1px solid #e0d5c8; border-radius: 4px; overflow: hidden; display: grid; grid-template-columns: 240px 1fr; transition: border-color 0.2s; }
+.apf-blog-card:hover { border-color: var(--orange); }
+.apf-blog-img { background: #efe5d5; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 13px; min-height: 180px; overflow: hidden; }
+.apf-blog-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.apf-blog-content { padding: 28px; }
+.apf-blog-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 12px; }
+.apf-blog-cat { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); }
+.apf-blog-date { font-size: 12px; color: #aaa; }
+.apf-blog-content h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; text-transform: uppercase; color: var(--black); margin-bottom: 10px; line-height: 1.2; }
+.apf-blog-content p { font-size: 13.5px; color: var(--gray); line-height: 1.7; margin-bottom: 16px; }
+.apf-read-more { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--orange); border-bottom: 1px solid var(--orange); padding-bottom: 2px; display: inline-block; }
+
+.apf-sidebar { padding-top: 80px; }
+.apf-sidebar-widget { margin-bottom: 40px; }
+.apf-sidebar-widget h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; text-transform: uppercase; color: var(--black); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--orange); }
+.apf-cat-list { list-style: none; }
+.apf-cat-list li { padding: 10px 0; border-bottom: 1px solid #e8ddd0; display: flex; justify-content: space-between; font-size: 13.5px; }
+.apf-cat-list li a:hover { color: var(--orange); }
+.apf-cat-count { background: var(--orange); color: white; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 2px; }
+.apf-recent-post { display: flex; gap: 12px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #e8ddd0; }
+.apf-recent-post:last-child { border-bottom: none; }
+.apf-recent-thumb { width: 56px; height: 56px; background: #efe5d5; border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #bbb; overflow: hidden; }
+.apf-recent-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.apf-recent-post h5 { font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 4px; line-height: 1.4; }
+.apf-recent-post span { font-size: 11px; color: #aaa; }
+
+.apf-cta-section { background: var(--orange); padding: 100px 32px; text-align: center; position: relative; overflow: hidden; }
+.apf-cta-section::before { content: 'START'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Barlow Condensed', sans-serif; font-size: 200px; font-weight: 800; color: rgba(0,0,0,0.06); white-space: nowrap; pointer-events: none; }
+.apf-cta-section h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 64px; font-weight: 800; text-transform: uppercase; color: var(--white); line-height: 1.0; margin-bottom: 16px; position: relative; }
+.apf-cta-section p { font-size: 16px; color: rgba(255,255,255,0.8); margin-bottom: 36px; position: relative; }
+.apf-btn-dark { background: var(--black); color: var(--white); padding: 16px 36px; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-radius: 4px; display: inline-block; }
+
+@media (max-width: 960px) {
+  .apf-blog-inner { grid-template-columns: 1fr; }
+  .apf-sidebar { padding-top: 0; }
+}
+@media (max-width: 640px) {
+  .apf-blog-card { grid-template-columns: 1fr; }
+}
+
+/*------footer-------*/
+
+:root {
+  --black: #0d0d0d;
+  --orange: #e85d04;
+  --white: #ffffff;
+  --max: 1140px;
+}
+
+.apf-footer {
+  background: var(--black);
+  color: #666;
+  padding: 72px 32px 0;
+  border-top: 1px solid #1a1a1a;
+}
+.apf-footer-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.4fr;
+  gap: 48px;
+  padding-bottom: 56px;
+}
+.apf-footer-grid h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #444;
+  margin-bottom: 20px;
+}
+.apf-footer-grid p { font-size: 13px; line-height: 1.8; }
+.apf-footer-grid ul { list-style: none; }
+.apf-footer-grid ul li { margin-bottom: 12px; font-size: 13px; }
+.apf-footer-grid ul li a {
+  text-decoration: none;
+  color: #666;
+  transition: color 0.2s;
+}
+.apf-footer-grid ul li a:hover { color: var(--orange); }
+.apf-footer-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 14px;
+  display: block;
+  text-decoration: none;
+}
+.apf-footer-logo span { color: var(--orange); }
+.apf-social-row { display: flex; gap: 10px; margin-top: 20px; }
+.apf-social-row a {
+  width: 36px; height: 36px;
+  border: 1px solid #222;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700;
+  color: #555;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.apf-social-row a:hover { border-color: var(--orange); color: var(--orange); }
+.apf-footer-bottom {
+  border-top: 1px solid #151515;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #ffffff;
+}
+@media (max-width: 960px) {
+  .apf-footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .apf-footer-grid { grid-template-columns: 1fr; }
+}
+
+/*----header----*/
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --black: #0d0d0d;
+  --orange: #e85d04;
+  --amber: #f4a261;
+  --white: #ffffff;
+  --max: 1140px;
+}
+
+.apf-header {
+  background: var(--black);
+  border-bottom: 1px solid #222;
+  width: 100%;
+}
+
+.apf-nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.apf-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.apf-logo img {
+  height: 70px;
+  width: auto;
+  margin-right: 15px;
+}
+
+.apf-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.apf-logo-top {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.apf-logo-bottom {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 70;
+  letter-spacing: 1px;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+.apf-nav-links {
+  list-style: none;
+  display: flex;
+  gap: 36px;
+}
+
+.apf-nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--orange);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.apf-nav-links a:hover {
+  color: var(--white);
+}
+
+@media (max-width: 768px) {
+  .apf-nav-links {
+    display: none;
+  }
+
+  .apf-logo img {
+    height: 42px;
+  }
+
+  .apf-logo-top {
+    font-size: 18px;
+  }
+
+  .apf-logo-bottom {
+    font-size: 13px;
+  }
+}
+
+
+
+</style>
+
+</head>
+<body>
+
+<div class="apf-header">
+  <div class="apf-nav-inner">
+
+    
+
+      <div class="apf-logo-text">
+        <div class="apf-logo-top">AN</div>
+        <div class="apf-logo-bottom">PixelForge</div>
+      </div>
+    </a>
+
+    <ul class="apf-nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+  </div>
+</div>
+
+
+
+
+<div class="apf-wrap">
+  <div class="apf-page-hero">
+    <div class="apf-page-hero-bg">BLOG</div>
+    <div class="apf-page-hero-inner">
+      <div class="apf-page-label">Insights and Tips</div>
+      <h1>Digital Marketing Knowledge Hub</h1>
+      <p>Practical tips, guides, and insights to help your business grow in the digital world.</p>
+    </div>
+  </div>
+
+  <div class="apf-blog-section">
+    <div class="apf-blog-inner">
+      <div>
+        <div class="apf-blog-head">
+          <div class="apf-section-label">Latest Articles</div>
+          <h2>Recent Posts</h2>
+        </div>
+        <div class="apf-blog-grid">
+          
+          <!-- BLOG CARD 1 -->
+          <div class="apf-blog-card">
+            <div class="apf-blog-img">
+              <img src="WhatsApp-Image-2026-06-27-at-1.27.00-AM-300x300.jpeg" alt="10 SEO Mistakes Pakistani Businesses Make">
+            </div>
+            <div class="apf-blog-content">
+              <div class="apf-blog-meta">
+                <span class="apf-blog-cat">SEO</span>
+                <span class="apf-blog-date">June 10, 2026</span>
+              </div>
+              <h3>10 SEO Mistakes Pakistani Businesses Make and How to Fix Them</h3>
+              <p>Most small businesses in Pakistan lose customers every day because of simple SEO errors. Learn what they are and how to fix them quickly.</p>
+              <a href="10 SEO Mistakes Pakistani Bussiness Make.pdf" class="apf-read-more">Read Article</a>
+            </div>
+          </div>
+
+          <!-- BLOG CARD 2 -->
+          <div class="apf-blog-card">
+            <div class="apf-blog-img">
+              <img src="WhatsApp-Image-2026-06-27-at-6.45.27-AM-170x300.jpeg" alt="How to Grow Your Instagram Following">
+            </div>
+            <div class="apf-blog-content">
+              <div class="apf-blog-meta">
+                <span class="apf-blog-cat">Social Media</span>
+                <span class="apf-blog-date">May 28, 2026</span>
+              </div>
+              <h3>How to Grow Your Instagram Following from Zero to 10000</h3>
+              <p>A step by step content strategy guide that we use for our clients to build real, engaged audiences on Instagram without paid ads.</p>
+              <a href="how to grow instagram.pdf.pdf" class="apf-read-more">Read Article</a>
+            </div>
+          </div>
+
+          <!-- BLOG CARD 3 -->
+          <div class="apf-blog-card">
+            <div class="apf-blog-img">
+              <img src="WhatsApp-Image-2026-06-27-at-6.45.24-AM-300x300.jpeg" alt="Why Your Website Is Losing Customers">
+            </div>
+            <div class="apf-blog-content">
+              <div class="apf-blog-meta">
+                <span class="apf-blog-cat">Web Design</span>
+                <span class="apf-blog-date">May 15, 2026</span>
+              </div>
+              <h3>Why Your Website Is Losing Customers and What To Do About It</h3>
+              <p>A slow, outdated, or confusing website is costing you money. Here are the top design and performance issues we fix for every client.</p>
+              <a href="professional website.pdf.pdf" class="apf-read-more">Read Article</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="apf-sidebar">
+        <div class="apf-sidebar-widget">
+          <h4>Categories</h4>
+          <ul class="apf-cat-list">
+            <li><a href="#">SEO Tips</a><span class="apf-cat-count">8</span></li>
+            <li><a href="#">Web Design</a><span class="apf-cat-count">6</span></li>
+            <li><a href="#">Social Media</a><span class="apf-cat-count">10</span></li>
+            <li><a href="#">Branding</a><span class="apf-cat-count">5</span></li>
+            <li><a href="#">Digital Marketing</a><span class="apf-cat-count">12</span></li>
+          </ul>
+        </div>
+        <div class="apf-sidebar-widget">
+          <h4>Recent Posts</h4>
+          
+          <!-- RECENT POST 1 -->
+          <div class="apf-recent-post">
+            <div class="apf-recent-thumb">
+              <img src="WhatsApp-Image-2026-06-27-at-1.27.00-AM-300x300.jpeg" alt="Recent post thumbnail">
+            </div>
+            <div>
+              <h5>10 SEO Mistakes Pakistani Businesses Make</h5>
+              <span>June 10, 2026</span>
+            </div>
+          </div>
+
+          <!-- RECENT POST 2 -->
+          <div class="apf-recent-post">
+            <div class="apf-recent-thumb">
+              <img src="WhatsApp-Image-2026-06-27-at-6.45.27-AM-170x300.jpeg" alt="Recent post thumbnail">
+            </div>
+            <div>
+              <h5>How to Grow Instagram from Zero to 10000</h5>
+              <span>May 28, 2026</span>
+            </div>
+          </div>
+
+          <!-- RECENT POST 3 -->
+          <div class="apf-recent-post">
+            <div class="apf-recent-thumb">
+              <img src="WhatsApp-Image-2026-06-27-at-6.45.24-AM-300x300.jpeg" alt="Recent post thumbnail">
+            </div>
+            <div>
+              <h5>Why Your Website Is Losing Customers</h5>
+              <span>May 15, 2026</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA SECTION -->
+  <div class="apf-cta-section">
+    <h2>Want More Tips Like These?</h2>
+    <p>Follow us on social media or get in touch to talk about your business goals.</p>
+    <a href="/contact" class="apf-btn-dark">Contact Us Today</a>
+  </div>
+</div> 
+
+<!--footer-->
+<div class="apf-footer">
+  <div class="apf-footer-grid">
+    <div>
+      <a href="/" class="apf-footer-logo">AN <span>PixelForge</span></a>
+      <p>A digital agency helping businesses build websites, brands, and marketing strategies that actually grow revenue.</p>
+      <div class="apf-social-row">
+        <a href="#">IG</a>
+        <a href="#">FB</a>
+        <a href="#">LN</a>
+      </div>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="/">Home</a></li>lo
+        <li><a href="/about">About</a></li>
+        <li><a href="/portfolio">Portfolio</a></li>
+        <li><a href="/blog">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="/services">Web Development</a></li>
+        <li><a href="/services">SEO</a></li>
+        <li><a href="/services">Social Media</a></li>
+        <li><a href="/services">Branding</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li>Bhakkar, Punjab, Pakistan</li>
+        <li>+92 0000000000</li>
+        <li>noor666@gmail.com</li>
+      </ul>
+    </div>
+  </div>
+  <div class="apf-footer-bottom">
+    <span>2026 AN PixelForge. All rights reserved.</span>
+    <span>Designed by AN PixelForge</span>
+  </div>
+</body>
+</html>

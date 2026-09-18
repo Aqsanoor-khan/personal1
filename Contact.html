@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+:root {
+  --black: #0d0d0d;
+  --charcoal: #1c1c1c;
+  --orange: #e85d04;
+  --cream: #fdf6ee;
+  --cream-dark: #f5ece0;
+  --gray: #4a4a4a;
+  --white: #ffffff;
+  --max: 1140px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.apf-wrap { font-family: 'Inter', sans-serif; color: var(--gray); background: var(--cream); line-height: 1.6; }
+.apf-wrap a { text-decoration: none; color: inherit; }
+.apf-section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+
+.apf-page-hero { background: var(--black); padding: 80px 32px; position: relative; overflow: hidden; }
+.apf-page-hero-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Barlow Condensed', sans-serif; font-size: 180px; font-weight: 800; color: transparent; -webkit-text-stroke: 1px #1a1a1a; white-space: nowrap; pointer-events: none; text-transform: uppercase; }
+.apf-page-hero-inner { max-width: var(--max); margin: 0 auto; position: relative; z-index: 2; }
+.apf-page-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+.apf-page-hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(48px, 6vw, 80px); font-weight: 800; text-transform: uppercase; color: var(--white); line-height: 1.0; max-width: 700px; }
+.apf-page-hero p { font-size: 16px; color: #888; margin-top: 20px; max-width: 520px; line-height: 1.7; }
+
+.apf-contact-section { padding: 100px 32px; background: var(--cream); }
+.apf-contact-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+.apf-contact-info h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 48px; font-weight: 800; text-transform: uppercase; color: var(--black); line-height: 1.05; margin-bottom: 20px; }
+.apf-contact-info p { font-size: 15px; color: var(--gray); margin-bottom: 40px; line-height: 1.8; }
+.apf-info-item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 28px; }
+.apf-info-icon { width: 44px; height: 44px; background: var(--orange); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); flex-shrink: 0; }
+.apf-info-text h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; text-transform: uppercase; color: var(--black); margin-bottom: 4px; }
+.apf-info-text p { font-size: 14px; color: var(--gray); margin: 0; }
+.apf-social-links { display: flex; gap: 10px; margin-top: 32px; }
+.apf-social-links a { width: 40px; height: 40px; border: 1px solid #e0d5c8; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--gray); }
+.apf-social-links a:hover { border-color: var(--orange); color: var(--orange); }
+
+.apf-contact-form { background: var(--black); padding: 48px 40px; border-radius: 4px; }
+.apf-contact-form h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 800; text-transform: uppercase; color: var(--white); margin-bottom: 8px; }
+.apf-form-subtitle { font-size: 13px; color: #555; margin-bottom: 32px; }
+.apf-required { color: var(--orange); margin-left: 3px; font-size: 14px; }
+.apf-form-group { margin-bottom: 20px; }
+.apf-form-group label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #666; margin-bottom: 8px; }
+.apf-form-group input,
+.apf-form-group select,
+.apf-form-group textarea { width: 100%; background: #141414; border: 1px solid #222; color: var(--white); padding: 14px 16px; font-size: 14px; border-radius: 4px; outline: none; font-family: 'Inter', sans-serif; transition: border-color 0.2s; }
+.apf-form-group input:focus,
+.apf-form-group select:focus,
+.apf-form-group textarea:focus { border-color: var(--orange); }
+.apf-form-group textarea { height: 140px; resize: vertical; }
+.apf-form-group select option { background: #141414; }
+.apf-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.apf-error-msg { display: none; color: #ff4444; font-size: 12px; margin-top: 6px; font-weight: 500; }
+.apf-submit-btn { width: 100%; background: var(--orange); color: var(--white); padding: 16px; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border: none; border-radius: 4px; cursor: pointer; margin-top: 8px; font-family: 'Inter', sans-serif; }
+.apf-submit-btn:hover { background: #f4a261; }
+
+.apf-map-section { background: var(--black); padding: 80px 32px; }
+.apf-map-inner { max-width: var(--max); margin: 0 auto; }
+.apf-map-inner h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 36px; font-weight: 800; text-transform: uppercase; color: var(--white); margin-bottom: 32px; }
+.apf-map-placeholder { background: #141414; border: 1px solid #222; height: 360px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #555; font-size: 14px; }
+
+.apf-cta-section { background: var(--orange); padding: 100px 32px; text-align: center; position: relative; overflow: hidden; }
+.apf-cta-section::before { content: 'START'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Barlow Condensed', sans-serif; font-size: 200px; font-weight: 800; color: rgba(0,0,0,0.06); white-space: nowrap; pointer-events: none; }
+.apf-cta-section h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 64px; font-weight: 800; text-transform: uppercase; color: var(--white); line-height: 1.0; margin-bottom: 16px; position: relative; }
+.apf-cta-section p { font-size: 16px; color: rgba(255,255,255,0.8); margin-bottom: 36px; position: relative; }
+.apf-btn-dark { background: var(--black); color: var(--white); padding: 16px 36px; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-radius: 4px; display: inline-block; }
+
+.apf-popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 9999; align-items: center; justify-content: center; }
+.apf-popup-overlay.active { display: flex; }
+.apf-popup-box { background: white; border-radius: 16px; padding: 48px 40px; text-align: center; max-width: 440px; width: 90%; animation: popupIn 0.4s ease; }
+@keyframes popupIn { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.apf-popup-icon { width: 80px; height: 80px; background: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 40px; color: white; }
+.apf-popup-box h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 36px; font-weight: 800; text-transform: uppercase; color: #0d0d0d; margin-bottom: 12px; }
+.apf-popup-box p { font-size: 15px; color: #666; line-height: 1.7; margin-bottom: 6px; }
+.apf-popup-timer { font-size: 13px; color: #22c55e; font-weight: 600; margin-top: 20px; }
+.apf-popup-progress { width: 100%; height: 4px; background: #e5e7eb; border-radius: 2px; margin-top: 16px; overflow: hidden; }
+.apf-popup-progress-bar { height: 100%; background: #22c55e; width: 100%; animation: progressDown 4s linear forwards; }
+@keyframes progressDown { from { width: 100%; } to { width: 0%; } }
+
+@media (max-width: 960px) {
+  .apf-contact-inner { grid-template-columns: 1fr; }
+  .apf-form-row { grid-template-columns: 1fr; }
+}
+
+/*------footer-------*/
+
+:root {
+  --black: #0d0d0d;
+  --orange: #e85d04;
+  --white: #ffffff;
+  --max: 1140px;
+}
+
+.apf-footer {
+  background: var(--black);
+  color: #666;
+  padding: 72px 32px 0;
+  border-top: 1px solid #1a1a1a;
+}
+.apf-footer-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.4fr;
+  gap: 48px;
+  padding-bottom: 56px;
+}
+.apf-footer-grid h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #444;
+  margin-bottom: 20px;
+}
+.apf-footer-grid p { font-size: 13px; line-height: 1.8; }
+.apf-footer-grid ul { list-style: none; }
+.apf-footer-grid ul li { margin-bottom: 12px; font-size: 13px; }
+.apf-footer-grid ul li a {
+  text-decoration: none;
+  color: #666;
+  transition: color 0.2s;
+}
+.apf-footer-grid ul li a:hover { color: var(--orange); }
+.apf-footer-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 14px;
+  display: block;
+  text-decoration: none;
+}
+.apf-footer-logo span { color: var(--orange); }
+.apf-social-row { display: flex; gap: 10px; margin-top: 20px; }
+.apf-social-row a {
+  width: 36px; height: 36px;
+  border: 1px solid #222;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700;
+  color: #555;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.apf-social-row a:hover { border-color: var(--orange); color: var(--orange); }
+.apf-footer-bottom {
+  border-top: 1px solid #151515;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #ffffff;
+}
+@media (max-width: 960px) {
+  .apf-footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .apf-footer-grid { grid-template-columns: 1fr; }
+}
+
+/*----header----*/
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --black: #0d0d0d;
+  --orange: #e85d04;
+  --amber: #f4a261;
+  --white: #ffffff;
+  --max: 1140px;
+}
+
+.apf-header {
+  background: var(--black);
+  border-bottom: 1px solid #222;
+  width: 100%;
+}
+
+.apf-nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.apf-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.apf-logo img {
+  height: 70px;
+  width: auto;
+  margin-right: 15px;
+}
+
+.apf-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.apf-logo-top {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.apf-logo-bottom {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 70;
+  letter-spacing: 1px;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+.apf-nav-links {
+  list-style: none;
+  display: flex;
+  gap: 36px;
+}
+
+.apf-nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--orange);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.apf-nav-links a:hover {
+  color: var(--white);
+}
+
+@media (max-width: 768px) {
+  .apf-nav-links {
+    display: none;
+  }
+
+  .apf-logo img {
+    height: 42px;
+  }
+
+  .apf-logo-top {
+    font-size: 18px;
+  }
+
+  .apf-logo-bottom {
+    font-size: 13px;
+  }
+}
+
+
+</style>
+</head>
+<body>
+   
+<div class="apf-header">
+  <div class="apf-nav-inner">
+
+    
+
+      <div class="apf-logo-text">
+        <div class="apf-logo-top">AN</div>
+        <div class="apf-logo-bottom">PixelForge</div>
+      </div>
+    </a>
+
+    <ul class="apf-nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+  </div>
+</div>
+
+
+<div class="apf-wrap">
+
+  <div class="apf-page-hero">
+    <div class="apf-page-hero-bg">CONTACT</div>
+    <div class="apf-page-hero-inner">
+      <div class="apf-page-label">Get In Touch</div>
+      <h1>Let Us Build Something Great Together</h1>
+      <p>Ready to start your project? Fill out the form and we will get back to you within 24 hours.</p>
+    </div>
+  </div>
+
+  <div class="apf-contact-section">
+    <div class="apf-contact-inner">
+
+      <div class="apf-contact-info">
+        <div class="apf-section-label">Contact Information</div>
+        <h2>We Would Love To Hear From You</h2>
+        <p>Whether you have a project in mind, a question about our services, or just want to say hello, our team is ready to help.</p>
+        <div class="apf-info-item">
+          <div class="apf-info-icon">L</div>
+          <div class="apf-info-text">
+            <h4>Our Location</h4>
+            <p>Bhakkar, Punjab, Pakistan</p>
+          </div>
+        </div>
+        <div class="apf-info-item">
+          <div class="apf-info-icon">P</div>
+          <div class="apf-info-text">
+            <h4>Phone Number</h4>
+            <p>+92 00000000007</p>
+          </div>
+        </div>
+        <div class="apf-info-item">
+          <div class="apf-info-icon">E</div>
+          <div class="apf-info-text">
+            <h4>Email Address</h4>
+            <p>anpixelforge@gmail.com.com</p>
+          </div>
+        </div>
+        <div class="apf-info-item">
+          <div class="apf-info-icon">H</div>
+          <div class="apf-info-text">
+            <h4>Working Hours</h4>
+            <p>Monday to Saturday, 9 AM to 6 PM PKT</p>
+          </div>
+        </div>
+        <div class="apf-social-links">
+          <a href="#">IG</a>
+          <a href="#">FB</a>
+          <a href="#">LN</a>
+          <a href="#">TT</a>
+        </div>
+      </div>
+
+      <div class="apf-contact-form">
+        <h3>Send Us a Message</h3>
+        <p class="apf-form-subtitle">Fields marked with <span class="apf-required">*</span> are required</p>
+
+        <div class="apf-form-row">
+          <div class="apf-form-group">
+            <label>First Name <span class="apf-required">*</span></label>
+            <input type="text" id="firstName" placeholder="Your first name">
+            <div class="apf-error-msg" id="firstNameError">Please enter your first name</div>
+          </div>
+          <div class="apf-form-group">
+            <label>Last Name <span class="apf-required">*</span></label>
+            <input type="text" id="lastName" placeholder="Your last name">
+            <div class="apf-error-msg" id="lastNameError">Please enter your last name</div>
+          </div>
+        </div>
+
+        <div class="apf-form-group">
+          <label>Email Address <span class="apf-required">*</span></label>
+          <input type="email" id="emailField" placeholder="your@email.com">
+          <div class="apf-error-msg" id="emailError">Please enter a valid email address</div>
+        </div>
+
+        <div class="apf-form-group">
+          <label>Phone Number <span class="apf-required">*</span></label>
+          <input type="tel" id="phoneField" placeholder="+92 300 0000000">
+          <div class="apf-error-msg" id="phoneError">Please enter your phone number</div>
+        </div>
+
+        <div class="apf-form-group">
+          <label>Service You Need <span class="apf-required">*</span></label>
+          <select id="serviceField">
+            <option value="">Select a service</option>
+            <option>Web Development</option>
+            <option>Search Engine Optimization</option>
+            <option>Social Media Marketing</option>
+            <option>Brand Identity Design</option>
+            <option>Full Package</option>
+          </select>
+          <div class="apf-error-msg" id="serviceError">Please select a service</div>
+        </div>
+
+        <div class="apf-form-group">
+          <label>Your Message <span class="apf-required">*</span></label>
+          <textarea id="messageField" placeholder="Tell us about your project and goals..."></textarea>
+          <div class="apf-error-msg" id="messageError">Please enter your message</div>
+        </div>
+
+        <button class="apf-submit-btn" onclick="submitForm()">Send Message</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="apf-map-section">
+    <div class="apf-map-inner">
+      <div class="apf-section-label">Find Us</div>
+      <h2>Our Location</h2>
+      <div class="apf-map-placeholder">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d108826.2272400682!2d74.28764206533204!3d31.52911432074816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3925d63bd5e12057%3A0xf477a475419fe9b5!2sBhakkar%2C%20Pakistan!5e0!3m2!1sen!2s!4v1782578641985!5m2!1sen!2s" width="600" height="420" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="apf-cta-section">
+    <h2>Still Have Questions?</h2>
+    <p>Call us directly or send an email and we will respond within 24 hours.</p>
+    <a href="tel:+923000000000" class="apf-btn-dark">Call Us Now</a>
+  </div>
+
+</div>
+
+<div class="apf-popup-overlay" id="successPopup">
+  <div class="apf-popup-box">
+    <div class="apf-popup-icon">✓</div>
+    <h3>Congratulations!</h3>
+    <p>Your message has been submitted successfully.</p>
+    <p>We will get back to you within <strong>24 hours</strong>.</p>
+    <p>Thank you for contacting <strong>AN PixelForge</strong>!</p>
+    <div class="apf-popup-timer" id="timerText">
+      Redirecting you to the home page in 4 seconds...
+    </div>
+    <div class="apf-popup-progress">
+      <div class="apf-popup-progress-bar"></div>
+    </div>
+  </div>
+</div>
+
+<!--footer-->
+<div class="apf-footer">
+  <div class="apf-footer-grid">
+    <div>
+      <a href="home.html" class="apf-footer-logo">AN <span>PixelForge</span></a>
+      <p>A digital agency helping businesses build websites, brands, and marketing strategies that actually grow revenue.</p>
+      <div class="apf-social-row">
+        <a href="#">IG</a>
+        <a href="#">FB</a>
+        <a href="#">LN</a>
+      </div>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="services.html">Web Development</a></li>
+        <li><a href="services.html">SEO</a></li>
+        <li><a href="services.html">Social Media</a></li>
+        <li><a href="services.html">Branding</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li>Bhakkar, Punjab, Pakistan</li>
+        <li>+92 3707265665</li>
+        <li>noor666@gmail.com</li>
+      </ul>
+    </div>
+  </div>
+  <div class="apf-footer-bottom">
+    <span>2026 AN PixelForge. All rights reserved.</span>
+    <span>Designed by AN PixelForge</span>
+  </div>
+
+
+
+<script>
+function submitForm() {
+  var isValid = true;
+
+  var firstName = document.getElementById('firstName').value.trim();
+  if (firstName === '') {
+    document.getElementById('firstNameError').style.display = 'block';
+    document.getElementById('firstName').style.borderColor = '#ff4444';
+    isValid = false;
+  } else {
+    document.getElementById('firstNameError').style.display = 'none';
+    document.getElementById('firstName').style.borderColor = '#e85d04';
+  }
+
+  var lastName = document.getElementById('lastName').value.trim();
+  if (lastName === '') {
+    document.getElementById('lastNameError').style.display = 'block';
+    document.getElementById('lastName').style.borderColor = '#ff4444';
+    isValid = false;
+  } else {
+    document.getElementById('lastNameError').style.display = 'none';
+    document.getElementById('lastName').style.borderColor = '#e85d04';
+  }
+
+  var email = document.getElementById('emailField').value.trim();
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (email === '' || !emailPattern.test(email)) {
+    document.getElementById('emailError').style.display = 'block';
+    document.getElementById('emailField').style.borderColor = '#ff4444';
+    isValid = false;
+  } else {
+    document.getElementById('emailError').style.display = 'none';
+    document.getElementById('emailField').style.borderColor = '#e85d04';
+  }
+
+  var phone = document.getElementById('phoneField').value.trim();
+  if (phone === '') {
+    document.getElementById('phoneError').style.display = 'block';
+    document.getElementById('phoneField').style.borderColor = '#ff4444';
+    isValid = false;
+  } else {
+    document.getElementById('phoneError').style.display = 'none';
+    document.getElementById('phoneField').style.borderColor = '#e85d04';
+  }
+
+  var service = document.getElementById('serviceField').value;
+  if (service === '') {
+    document.getElementById('serviceError').style.display = 'block';
+    document.getElementById('serviceField').style.borderColor = '#ff4444';
+    isValid = false;
+  } else {
+    document.getElementById('serviceError').style.display = 'none';
+    document.getElementById('serviceField').style.borderColor = '#e85d04';
+  }
+
+  var message = document.getElementById('messageField').value.trim();
+  if (message === '') {
+    document.getElementById('messageError').style.display = 'block';
+    document.getElementById('messageField').style.borderColor = '#ff4444';
+    isValid = false;
+  } else {
+    document.getElementById('messageError').style.display = 'none';
+    document.getElementById('messageField').style.borderColor = '#e85d04';
+  }
+
+
+
+    var seconds = 4;
+    var countdown = setInterval(function() {
+      seconds--;
+      document.getElementById('timerText').innerText =
+        'Redirecting to HOME PAGE in ' + seconds + ' seconds...';
+      if (seconds <= 0) {
+        clearInterval(countdown);
+        window.location.href = 'home.html'; // Redirecting you to the home page
+      }
+    }, 1000);
+  }
+
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

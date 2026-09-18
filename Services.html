@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+:root {
+  --black: #0d0d0d; --charcoal: #1c1c1c; --orange: #e85d04;
+  --cream: #fdf6ee; --cream-dark: #f5ece0; --gray: #4a4a4a; --white: #ffffff; --max: 1140px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.apf-wrap { font-family: 'Inter', sans-serif; color: var(--gray); background: var(--cream); line-height: 1.6; }
+.apf-wrap a { text-decoration: none; color: inherit; }
+.apf-section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+
+.apf-page-hero { background: var(--black); padding: 80px 32px; position: relative; overflow: hidden; }
+.apf-page-hero-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Barlow Condensed', sans-serif; font-size: 180px; font-weight: 800; color: transparent; -webkit-text-stroke: 1px #1a1a1a; white-space: nowrap; pointer-events: none; text-transform: uppercase; }
+.apf-page-hero-inner { max-width: var(--max); margin: 0 auto; position: relative; z-index: 2; }
+.apf-page-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+.apf-page-hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(48px, 6vw, 80px); font-weight: 800; text-transform: uppercase; color: var(--white); line-height: 1.0; max-width: 700px; }
+.apf-page-hero p { font-size: 16px; color: #888; margin-top: 20px; max-width: 520px; line-height: 1.7; }
+
+.apf-port-section { padding: 100px 32px; background: var(--cream); }
+.apf-port-head { max-width: var(--max); margin: 0 auto 60px; }
+.apf-port-head h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 52px; font-weight: 800; text-transform: uppercase; color: var(--black); }
+.apf-port-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.apf-port-card { background: var(--cream-dark); border: 1px solid #e0d5c8; border-radius: 4px; overflow: hidden; transition: border-color 0.2s; }
+.apf-port-card:hover { border-color: var(--orange); }
+.apf-port-img { height: 220px; background: #efe5d5; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 13px; position: relative; overflow: hidden; }
+.apf-port-img::after { content: 'View Project'; position: absolute; bottom: -40px; left: 0; right: 0; text-align: center; background: var(--orange); color: white; font-size: 12px; font-weight: 700; text-transform: uppercase; padding: 12px; transition: bottom 0.3s; }
+.apf-port-card:hover .apf-port-img::after { bottom: 0; }
+.apf-port-info { padding: 24px; }
+.apf-port-tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+.apf-port-info h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; text-transform: uppercase; color: var(--black); margin-bottom: 8px; }
+.apf-port-info p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+.apf-case-section { background: var(--black); padding: 100px 32px; }
+.apf-case-head { max-width: var(--max); margin: 0 auto 60px; }
+.apf-case-head h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 52px; font-weight: 800; text-transform: uppercase; color: var(--white); }
+.apf-case-item { max-width: var(--max); margin: 0 auto 60px; background: #141414; border: 1px solid #222; padding: 48px; display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: start; }
+.apf-case-item:last-child { margin-bottom: 0; }
+.apf-case-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
+.apf-case-item h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 800; text-transform: uppercase; color: var(--white); margin-bottom: 8px; }
+.apf-case-type { font-size: 12px; color: #555; text-transform: uppercase; letter-spacing: 1px; }
+.apf-case-content p { font-size: 14px; color: #888; line-height: 1.8; margin-bottom: 16px; }
+.apf-case-results { display: flex; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+.apf-result-num { font-family: 'Barlow Condensed', sans-serif; font-size: 36px; font-weight: 800; color: var(--orange); line-height: 1; }
+.apf-result-label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+.apf-clients { background: var(--cream); padding: 80px 32px; }
+.apf-clients-head { max-width: var(--max); margin: 0 auto 40px; text-align: center; }
+.apf-clients-head h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 36px; font-weight: 800; text-transform: uppercase; color: var(--black); }
+.apf-clients-row { max-width: var(--max); margin: 0 auto; display: flex; gap: 2px; flex-wrap: wrap; }
+.apf-client-box { flex: 1; min-width: 160px; background: var(--cream-dark); border: 1px solid #e0d5c8; padding: 32px 24px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 13px; text-align: center; }
+
+.apf-cta-section { background: var(--orange); padding: 100px 32px; text-align: center; position: relative; overflow: hidden; }
+.apf-cta-section::before { content: 'START'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Barlow Condensed', sans-serif; font-size: 200px; font-weight: 800; color: rgba(0,0,0,0.06); white-space: nowrap; pointer-events: none; }
+.apf-cta-section h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 64px; font-weight: 800; text-transform: uppercase; color: var(--white); line-height: 1.0; margin-bottom: 16px; position: relative; }
+.apf-cta-section p { font-size: 16px; color: rgba(255,255,255,0.8); margin-bottom: 36px; position: relative; }
+.apf-btn-dark { background: var(--black); color: var(--white); padding: 16px 36px; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-radius: 4px; display: inline-block; }
+
+@media (max-width: 960px) {
+  .apf-port-grid { grid-template-columns: repeat(2, 1fr); }
+  .apf-case-item { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 640px) {
+  .apf-port-grid { grid-template-columns: 1fr; }
+}
+
+/*footer*/
+
+:root {
+  --black: #0d0d0d;
+  --orange: #e85d04;
+  --white: #ffffff;
+  --max: 1140px;
+}
+
+.apf-footer {
+  background: var(--black);
+  color: #666;
+  padding: 72px 32px 0;
+  border-top: 1px solid #1a1a1a;
+}
+.apf-footer-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.4fr;
+  gap: 48px;
+  padding-bottom: 56px;
+}
+.apf-footer-grid h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #444;
+  margin-bottom: 20px;
+}
+.apf-footer-grid p { font-size: 13px; line-height: 1.8; }
+.apf-footer-grid ul { list-style: none; }
+.apf-footer-grid ul li { margin-bottom: 12px; font-size: 13px; }
+.apf-footer-grid ul li a {
+  text-decoration: none;
+  color: #666;
+  transition: color 0.2s;
+}
+.apf-footer-grid ul li a:hover { color: var(--orange); }
+.apf-footer-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 14px;
+  display: block;
+  text-decoration: none;
+}
+.apf-footer-logo span { color: var(--orange); }
+.apf-social-row { display: flex; gap: 10px; margin-top: 20px; }
+.apf-social-row a {
+  width: 36px; height: 36px;
+  border: 1px solid #222;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700;
+  color: #555;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.apf-social-row a:hover { border-color: var(--orange); color: var(--orange); }
+.apf-footer-bottom {
+  border-top: 1px solid #151515;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #ffffff;
+}
+@media (max-width: 960px) {
+  .apf-footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .apf-footer-grid { grid-template-columns: 1fr; }
+}
+
+/*header*/
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --black: #0d0d0d;
+  --orange: #e85d04;
+  --amber: #f4a261;
+  --white: #ffffff;
+  --max: 1140px;
+}
+
+.apf-header {
+  background: var(--black);
+  border-bottom: 1px solid #222;
+  width: 100%;
+}
+
+.apf-nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.apf-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.apf-logo img {
+  height: 70px;
+  width: auto;
+  margin-right: 15px;
+}
+
+.apf-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.apf-logo-top {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.apf-logo-bottom {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 70;
+  letter-spacing: 1px;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+.apf-nav-links {
+  list-style: none;
+  display: flex;
+  gap: 36px;
+}
+
+.apf-nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--orange);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.apf-nav-links a:hover {
+  color: var(--white);
+}
+
+@media (max-width: 768px) {
+  .apf-nav-links {
+    display: none;
+  }
+
+  .apf-logo img {
+    height: 42px;
+  }
+
+  .apf-logo-top {
+    font-size: 18px;
+  }
+
+  .apf-logo-bottom {
+    font-size: 13px;
+  }
+}
+
+
+
+</style>
+</head>
+<body>
+  
+<!--Header section-->
+
+<div class="apf-header">
+  <div class="apf-nav-inner">
+
+  
+
+      <div class="apf-logo-text">
+        <div class="apf-logo-top">AN</div>
+        <div class="apf-logo-bottom">PixelForge</div>
+      </div>
+    </a>
+
+    <ul class="apf-nav-links">
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="About.html">About</a></li>
+      <li><a href="Services.html">Services</a></li>
+      <li><a href="Portfolio.html">Portfolio</a></li>
+      <li><a href="Blog.html">Blog</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+
+  </div>
+</div>
+   
+    
+  
+
+
+<div class="apf-wrap">
+  <div class="apf-page-hero">
+    <div class="apf-page-hero-bg">WORK</div>
+    <div class="apf-page-hero-inner">
+      <div class="apf-page-label">Our Portfolio</div>
+      <h1>Projects We Are Proud Of</h1>
+      <p>A selection of our best work across web development, branding, SEO, and social media marketing.</p>
+    </div>
+  </div>
+
+  <div class="apf-port-section">
+    <div class="apf-port-head">
+      <div class="apf-section-label">Recent Work</div>
+      <h2>Latest Projects</h2>
+    </div>
+    <div class="apf-port-grid">
+      <div class="apf-port-card"><div class="apf-port-img">
+          <img src="WhatsApp-Image-2026-06-27-at-3.27.26-AM-200x300.jpeg"
+          style="width:100%;height:100%;">
+      </div><div class="apf-port-info"><div class="apf-port-tag">Web Development</div><h3>Aqsa Boutique Website</h3><p>A complete e-commerce website for a local fashion boutique with online ordering and payment integration.</p></div></div>
+      <div class="apf-port-card"><div class="apf-port-img">
+          <img src="WhatsApp-Image-2026-06-27-at-3.22.12-AM-201x300.jpeg"
+          style="width:100%;height:100%;">
+      </div><div class="apf-port-info"><div class="apf-port-tag">Branding</div><h3>Khan Restaurant Brand</h3><p>Full brand identity design including logo, menu design, and social media profile kit for a Lahore restaurant.</p></div></div>
+      <div class="apf-port-card"><div class="apf-port-img">
+           <img src="Dark-Green-Geometric-Real-Estate-For-Sale-Instagram-Post-1-300x300.png"
+          style="width:100%;height:100%;">
+      </div><div class="apf-port-info"><div class="apf-port-tag">SEO</div><h3>Noor Real Estate SEO</h3><p>6 month SEO campaign that took the client from page 5 to page 1 on Google for 12 target keywords.</p></div></div>
+      <div class="apf-port-card"><div class="apf-port-img"> <img src="WhatsApp-Image-2026-06-27-at-3.22.11-AM-300x300.jpeg"
+          style="width:100%;height:100%;"></div><div class="apf-port-info"><div class="apf-port-tag">Social Media</div><h3>Noor Skincare Instagram</h3><p>Grew a skincare brand Instagram account from 800 to 12000 followers in 4 months through content strategy.</p></div></div>
+      <div class="apf-port-card"><div class="apf-port-img"> <img src="Home-300x174.png"
+          style="width:100%;height:100%;"></div><div class="apf-port-info"><div class="apf-port-tag">Web Development</div><h3>TechStart Pakistan Website</h3><p>Corporate website for a technology startup with custom animations, blog, and team section.</p></div></div>
+      <div class="apf-port-card"><div class="apf-port-img"> <img src="WhatsApp-Image-2026-06-27-at-3.22.08-AM-300x300.jpeg"
+          style="width:100%;height:100%;"></div><div class="apf-port-info"><div class="apf-port-tag">Branding</div><h3>Horizon peak Consulting Brand</h3><p>Professional brand identity for a business consulting firm including logo, stationery, and brand guidelines.</p></div></div>
+    </div>
+  </div>
+
+  <div class="apf-case-section">
+    <div class="apf-case-head">
+      <div class="apf-section-label">Deep Dives</div>
+      <h2>Case Studies</h2>
+    </div>
+    <div class="apf-case-item">
+      <div><div class="apf-case-label">Case Study 01</div><h3>aqsa Boutique</h3><div class="apf-case-type">Web Development and Branding</div></div>
+      <div class="apf-case-content">
+        <p>Aqsa Boutique approached us with an outdated website that was losing customers to competitors. We redesigned their entire online presence with a new brand identity, a modern website, and a social media strategy.</p>
+        <p>Within 60 days of launch, online sales increased significantly and the client reported receiving more inquiries than ever before.</p>
+        <div class="apf-case-results">
+          <div><div class="apf-result-num">200%</div><div class="apf-result-label">More inquiries</div></div>
+          <div><div class="apf-result-num">60</div><div class="apf-result-label">Days to results</div></div>
+          <div><div class="apf-result-num">3x</div><div class="apf-result-label">Social followers</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="apf-case-item">
+      <div><div class="apf-case-label">Case Study 02</div><h3>Noor Real Estate</h3><div class="apf-case-type">SEO Campaign</div></div>
+      <div class="apf-case-content">
+        <p>Noor Real Estate had a website but no visibility on Google. We ran a 6 month SEO campaign focused on local keywords, content creation, and technical improvements.</p>
+        <p>They now rank on page 1 for 12 high value real estate keywords and receive daily inquiries through organic search.</p>
+        <div class="apf-case-results">
+          <div><div class="apf-result-num">12</div><div class="apf-result-label">Page 1 keywords</div></div>
+          <div><div class="apf-result-num">400%</div><div class="apf-result-label">Traffic increase</div></div>
+          <div><div class="apf-result-num">6mo</div><div class="apf-result-label">To achieve results</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="apf-clients">
+    <div class="apf-clients-head">
+      <div class="apf-section-label">Trusted By</div>
+      <h2>Clients We Have Worked With</h2>
+    </div>
+    <div class="apf-clients-row">
+      <div class="apf-client-box"><img src="WhatsApp-Image-2026-06-25-at-10.57.46-PM-1-300x300.jpeg"style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="apf-client-box"><img src="WhatsApp-Image-2026-06-25-at-10.57.46-PM-300x300.jpeg"style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="apf-client-box"><img src="WhatsApp-Image-2026-06-25-at-10.57.46-PM-2-300x300.jpeg"style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="apf-client-box"><img src="WhatsApp-Image-2026-06-25-at-10.57.45-PM-1-300x183.jpeg"style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="apf-client-box"><img src="WhatsApp-Image-2026-06-25-at-10.57.45-PM-251x300.jpeg"style="width:100%;height:100%;object-fit:cover;"></div>
+    </div>
+  </div>
+
+  <div class="apf-cta-section">
+    <h2>Want Results Like These?</h2>
+    <p>Let us build your next success story. Book a free consultation today.</p>
+    <a href="contact.html" class="apf-btn-dark">Start Your Project</a>
+  </div>
+</div>
+ 
+<!--footer-->
+<div class="apf-footer">
+  <div class="apf-footer-grid">
+    <div>
+      <a href="home.html" class="apf-footer-logo">AN <span>PixelForge</span></a>
+      <p>A digital agency helping businesses build websites, brands, and marketing strategies that actually grow revenue.</p>
+      <div class="apf-social-row">
+        <a href="#">IG</a>
+        <a href="#">FB</a>
+        <a href="#">LN</a>
+      </div>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="services.html">Web Development</a></li>
+        <li><a href="services.html">SEO</a></li>
+        <li><a href="services.html">Social Media</a></li>
+        <li><a href="services.html">Branding</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li>Bhakkar, Punjab, Pakistan</li>
+        <li>+92 0000000000</li>
+        <li>noor666@gmail.com</li>
+      </ul>
+    </div>
+  </div>
+  <div class="apf-footer-bottom">
+    <span>2026 AN PixelForge. All rights reserved.</span>
+    <span>Designed by AN PixelForge</span>
+  </div>
+</body>
+</html>

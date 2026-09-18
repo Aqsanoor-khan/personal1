@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+Services
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+:root {
+  --black: #0d0d0d; --charcoal: #1c1c1c; --orange: #e85d04; --amber: #f4a261;
+  --cream: #fdf6ee; --cream-dark: #f5ece0; --gray: #4a4a4a; --white: #ffffff; --max: 1140px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.apf-wrap { font-family: 'Inter', sans-serif; color: var(--gray); background: var(--cream); line-height: 1.6; }
+.apf-wrap a { text-decoration: none; color: inherit; }
+.apf-section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+
+.apf-page-hero { background: var(--black); padding: 80px 32px; position: relative; overflow: hidden; }
+.apf-page-hero-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Barlow Condensed', sans-serif; font-size: 180px; font-weight: 800; color: transparent; -webkit-text-stroke: 1px #1a1a1a; white-space: nowrap; pointer-events: none; text-transform: uppercase; }
+.apf-page-hero-inner { max-width: var(--max); margin: 0 auto; position: relative; z-index: 2; }
+.apf-page-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+.apf-page-hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(48px, 6vw, 80px); font-weight: 800; text-transform: uppercase; color: var(--white); line-height: 1.0; max-width: 700px; }
+.apf-page-hero p { font-size: 16px; color: #888; margin-top: 20px; max-width: 520px; line-height: 1.7; }
+
+.apf-svc-overview { background: var(--black); padding: 100px 32px; }
+.apf-svc-overview-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+.apf-svc-big-card { background: #141414; border: 1px solid #222; padding: 40px 32px; transition: border-color 0.2s; }
+.apf-svc-big-card:hover { border-color: var(--orange); }
+.apf-svc-big-num { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; color: var(--orange); letter-spacing: 2px; margin-bottom: 28px; }
+.apf-svc-big-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; text-transform: uppercase; color: var(--white); margin-bottom: 14px; }
+.apf-svc-big-card p { font-size: 13px; color: #666; line-height: 1.7; margin-bottom: 24px; }
+.apf-svc-arrow { font-size: 18px; color: var(--orange); }
+
+.apf-svc-detail { padding: 100px 32px; background: var(--cream); }
+.apf-svc-detail-inner { max-width: var(--max); margin: 0 auto; }
+.apf-svc-detail-item { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 80px 0; border-bottom: 1px solid #e8ddd0; }
+.apf-svc-detail-item:first-child { padding-top: 0; }
+.apf-svc-detail-item:last-child { border-bottom: none; }
+.apf-svc-detail-item.apf-reverse { direction: rtl; }
+.apf-svc-detail-item.apf-reverse > * { direction: ltr; }
+.apf-svc-detail-text h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 42px; font-weight: 800; text-transform: uppercase; color: var(--black); margin-bottom: 16px; line-height: 1.05; }
+.apf-svc-detail-text p { font-size: 15px; color: var(--gray); margin-bottom: 14px; line-height: 1.8; }
+.apf-benefits-list { list-style: none; margin-top: 20px; }
+.apf-benefits-list li { font-size: 14px; color: var(--gray); padding: 8px 0; border-bottom: 1px solid #e8ddd0; display: flex; align-items: center; gap: 10px; }
+.apf-benefits-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+.apf-svc-detail-img { background: var(--cream-dark); border: 1px solid #e0d5c8; height: 360px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 13px; position: relative; overflow: hidden; }
+.apf-svc-detail-img::before { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: var(--orange); }
+
+.apf-pricing { background: var(--charcoal); padding: 100px 32px; }
+.apf-pricing-head { max-width: var(--max); margin: 0 auto 60px; text-align: center; }
+.apf-pricing-head h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 52px; font-weight: 800; text-transform: uppercase; color: var(--white); }
+.apf-pricing-head p { font-size: 15px; color: #666; margin-top: 12px; }
+.apf-pricing-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.apf-price-card { background: #222; border: 1px solid #2e2e2e; padding: 48px 36px; }
+.apf-price-card.apf-featured { background: var(--orange); border-color: var(--orange); }
+.apf-price-tier { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+.apf-price-card.apf-featured .apf-price-tier { color: rgba(255,255,255,0.7); }
+.apf-price-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 800; text-transform: uppercase; color: var(--white); margin-bottom: 8px; }
+.apf-price-amount { font-family: 'Barlow Condensed', sans-serif; font-size: 52px; font-weight: 800; color: var(--white); line-height: 1; margin: 16px 0; }
+.apf-price-amount span { font-size: 16px; font-weight: 400; color: #888; }
+.apf-price-card.apf-featured .apf-price-amount span { color: rgba(255,255,255,0.6); }
+.apf-price-features { list-style: none; margin: 24px 0 32px; }
+.apf-price-features li { font-size: 14px; color: #888; padding: 10px 0; border-bottom: 1px solid #333; display: flex; gap: 10px; align-items: center; }
+.apf-price-card.apf-featured .apf-price-features li { color: rgba(255,255,255,0.8); border-bottom-color: rgba(255,255,255,0.15); }
+.apf-price-features li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+.apf-price-card.apf-featured .apf-price-features li::before { background: var(--white); }
+.apf-price-btn { display: block; text-align: center; padding: 14px; border: 1px solid #444; color: #888; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px; }
+.apf-price-card.apf-featured .apf-price-btn { background: var(--black); color: var(--white); border-color: var(--black); }
+
+.apf-cta-section { background: var(--orange); padding: 100px 32px; text-align: center; position: relative; overflow: hidden; }
+.apf-cta-section::before { content: 'START'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Barlow Condensed', sans-serif; font-size: 200px; font-weight: 800; color: rgba(0,0,0,0.06); white-space: nowrap; pointer-events: none; }
+.apf-cta-section h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 64px; font-weight: 800; text-transform: uppercase; color: var(--white); line-height: 1.0; margin-bottom: 16px; position: relative; }
+.apf-cta-section p { font-size: 16px; color: rgba(255,255,255,0.8); margin-bottom: 36px; position: relative; }
+.apf-btn-dark { background: var(--black); color: var(--white); padding: 16px 36px; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-radius: 4px; display: inline-block; }
+
+@media (max-width: 960px) {
+  .apf-svc-overview-grid { grid-template-columns: repeat(2, 1fr); }
+  .apf-svc-detail-item { grid-template-columns: 1fr; gap: 40px; }
+  .apf-svc-detail-item.apf-reverse { direction: ltr; }
+  .apf-pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+}
+@media (max-width: 640px) {
+  .apf-svc-overview-grid { grid-template-columns: 1fr; }
+}
+
+/*footer*/
+
+:root {
+  --black: #0d0d0d;
+  --orange: #e85d04;
+  --white: #ffffff;
+  --max: 1140px;
+}
+
+.apf-footer {
+  background: var(--black);
+  color: #666;
+  padding: 72px 32px 0;
+  border-top: 1px solid #1a1a1a;
+}
+.apf-footer-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.4fr;
+  gap: 48px;
+  padding-bottom: 56px;
+}
+.apf-footer-grid h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #444;
+  margin-bottom: 20px;
+}
+.apf-footer-grid p { font-size: 13px; line-height: 1.8; }
+.apf-footer-grid ul { list-style: none; }
+.apf-footer-grid ul li { margin-bottom: 12px; font-size: 13px; }
+.apf-footer-grid ul li a {
+  text-decoration: none;
+  color: #666;
+  transition: color 0.2s;
+}
+.apf-footer-grid ul li a:hover { color: var(--orange); }
+.apf-footer-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 14px;
+  display: block;
+  text-decoration: none;
+}
+.apf-footer-logo span { color: var(--orange); }
+.apf-social-row { display: flex; gap: 10px; margin-top: 20px; }
+.apf-social-row a {
+  width: 36px; height: 36px;
+  border: 1px solid #222;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700;
+  color: #555;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.apf-social-row a:hover { border-color: var(--orange); color: var(--orange); }
+.apf-footer-bottom {
+  border-top: 1px solid #151515;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #ffffff;
+}
+@media (max-width: 960px) {
+  .apf-footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .apf-footer-grid { grid-template-columns: 1fr; }
+}
+
+/*----header----*/
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --black: #0d0d0d;
+  --orange: #e85d04;
+  --amber: #f4a261;
+  --white: #ffffff;
+  --max: 1140px;
+}
+
+.apf-header {
+  background: var(--black);
+  border-bottom: 1px solid #222;
+  width: 100%;
+}
+
+.apf-nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.apf-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.apf-logo img {
+  height: 70px;
+  width: auto;
+  margin-right: 15px;
+}
+
+.apf-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.apf-logo-top {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.apf-logo-bottom {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 70;
+  letter-spacing: 1px;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+.apf-nav-links {
+  list-style: none;
+  display: flex;
+  gap: 36px;
+}
+
+.apf-nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--orange);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.apf-nav-links a:hover {
+  color: var(--white);
+}
+
+@media (max-width: 768px) {
+  .apf-nav-links {
+    display: none;
+  }
+
+  .apf-logo img {
+    height: 42px;
+  }
+
+  .apf-logo-top {
+    font-size: 18px;
+  }
+
+  .apf-logo-bottom {
+    font-size: 13px;
+  }
+}
+
+</style>
+ 
+<!--Header section-->
+
+<div class="apf-header">
+  <div class="apf-nav-inner">
+
+  
+
+      <div class="apf-logo-text">
+        <div class="apf-logo-top">AN</div>
+        <div class="apf-logo-bottom">PixelForge</div>
+      </div>
+    </a>
+
+    <ul class="apf-nav-links">
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="About.html">About</a></li>
+      <li><a href="Services.html">Services</a></li>
+      <li><a href="Portfolio.html">Portfolio</a></li>
+      <li><a href="Blog.html">Blog</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+
+  </div>
+</div>
+<div class="apf-wrap">
+  <div class="apf-page-hero">
+    <div class="apf-page-hero-bg">SERVICES</div>
+    <div class="apf-page-hero-inner">
+      <div class="apf-page-label">What We Offer</div>
+      <h1>Services That Drive Real Growth</h1>
+      <p>From web development to full scale digital marketing, we offer everything your business needs to grow online.</p>
+    </div>
+  </div>
+
+  <div class="apf-svc-overview">
+    <div class="apf-svc-overview-grid">
+      <div class="apf-svc-big-card"><div class="apf-svc-big-num">01</div><h3>Web Development</h3><p>Fast, responsive, and conversion focused websites that represent your brand professionally.</p><div class="apf-svc-arrow">→</div></div>
+      <div class="apf-svc-big-card"><div class="apf-svc-big-num">02</div><h3>Search Engine Optimization</h3><p>Strategic SEO that gets your business found by the right people at the right time.</p><div class="apf-svc-arrow">→</div></div>
+      <div class="apf-svc-big-card"><div class="apf-svc-big-num">03</div><h3>Social Media Marketing</h3><p>Content, campaigns, and community management that grow your audience and engagement.</p><div class="apf-svc-arrow">→</div></div>
+      <div class="apf-svc-big-card"><div class="apf-svc-big-num">04</div><h3>Brand Identity Design</h3><p>Logos, color systems, and visual identities that make your brand instantly recognizable.</p><div class="apf-svc-arrow">→</div></div>
+    </div>
+  </div>
+
+  <div class="apf-svc-detail">
+    <div class="apf-svc-detail-inner">
+      <div class="apf-svc-detail-item">
+        <div class="apf-svc-detail-text">
+          <div class="apf-section-label">Service 01</div>
+          <h2>Web Development</h2>
+          <p>We build websites that do more than just look good. Every site we create is fast, mobile friendly, and designed to convert visitors into customers.</p>
+          <ul class="apf-benefits-list">
+            <li>Mobile responsive design on all devices</li>
+            <li>Fast loading speed for better user experience</li>
+            <li>SEO ready structure from day one</li>
+            <li>Easy to manage and update content</li>
+            <li>Secure and reliable hosting setup</li>
+          </ul>
+        </div>
+        <div class="apf-svc-detail-img">
+            <img src="WhatsApp-Image-2026-06-27-at-1.27.08-AM-300x225.jpeg"
+            style=width:100%;height:100%;object-fit:cover;">
+        </div>
+      </div>
+      <div class="apf-svc-detail-item apf-reverse">
+        <div class="apf-svc-detail-text">
+          <div class="apf-section-label">Service 02</div>
+          <h2>Search Engine Optimization</h2>
+          <p>Our SEO strategies are built on research, data, and proven techniques that help your business rank higher on Google and attract consistent organic traffic.</p>
+          <ul class="apf-benefits-list">
+            <li>Keyword research and competitor analysis</li>
+            <li>On page and technical SEO optimization</li>
+            <li>Content strategy and blog writing</li>
+            <li>Monthly performance reports</li>
+            <li>Local SEO for Pakistan based businesses</li>
+          </ul>
+        </div>
+        <div class="apf-svc-detail-img">
+         <img src="WhatsApp-Image-2026-06-27-at-1.27.00-AM-300x300.jpeg"
+            style=width:100%;height:100%;object-fit:cover;"></div>
+      </div>
+      <div class="apf-svc-detail-item">
+        <div class="apf-svc-detail-text">
+          <div class="apf-section-label">Service 03</div>
+          <h2>Social Media Marketing</h2>
+          <p>We manage your social media presence across Instagram, Facebook, TikTok, and more, creating content that connects with your audience and drives real engagement.</p>
+          <ul class="apf-benefits-list">
+            <li>Content creation and scheduling</li>
+            <li>Paid advertising campaigns</li>
+            <li>Community management and responses</li>
+            <li>Monthly analytics and growth reports</li>
+            <li>Influencer outreach coordination</li>
+          </ul>
+        </div>
+        <div class="apf-svc-detail-img">
+             <img src="WhatsApp-Image-2026-06-27-at-1.27.04-AM-225x300.jpeg"
+            style=width:100%;height:100%;object-fit:cover;">
+        </div>
+      </div>
+      <div class="apf-svc-detail-item apf-reverse">
+        <div class="apf-svc-detail-text">
+          <div class="apf-section-label">Service 04</div>
+          <h2>Brand Identity Design</h2>
+          <p>Your brand is more than a logo. We create complete brand identity systems that make your business stand out and be remembered.</p>
+          <ul class="apf-benefits-list">
+            <li>Logo design with multiple concepts</li>
+            <li>Color palette and typography selection</li>
+            <li>Business card and stationery design</li>
+            <li>Brand guidelines document</li>
+            <li>Social media profile design kit</li>
+          </ul>
+        </div>
+        <div class="apf-svc-detail-img">
+        <img src="WhatsApp-Image-2026-02-15-at-8.28.46-AM.jpeg"
+         style=width:100%;height:100%;object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="apf-pricing">
+    <div class="apf-pricing-head">
+      <div class="apf-section-label">Investment</div>
+      <h2>Simple, Transparent Pricing</h2>
+      <p>No hidden fees. No surprises. Just clear packages built for businesses of every size.</p>
+    </div>
+    <div class="apf-pricing-grid">
+      <div class="apf-price-card">
+        <div class="apf-price-tier">Starter</div>
+        <h3>Basic Package</h3>
+        <div class="apf-price-amount">PKR 25K <span>per project</span></div>
+        <ul class="apf-price-features">
+          <li>5 page website</li>
+          <li>Mobile responsive design</li>
+          <li>Basic SEO setup</li>
+          <li>Contact form integration</li>
+          <li>2 rounds of revisions</li>
+        </ul>
+        <a href="contact.html" class="apf-price-btn">Get Started</a>
+      </div>
+      <div class="apf-price-card apf-featured">
+        <div class="apf-price-tier">Most Popular</div>
+        <h3>Growth Package</h3>
+        <div class="apf-price-amount">PKR 60K <span>per project</span></div>
+        <ul class="apf-price-features">
+          <li>10 page website</li>
+          <li>Full SEO optimization</li>
+          <li>Social media setup</li>
+          <li>Brand identity design</li>
+          <li>3 months support</li>
+        </ul>
+        <a href="contact.html" class="apf-price-btn">Get Started</a>
+      </div>
+      <div class="apf-price-card">
+        <div class="apf-price-tier">Enterprise</div>
+        <h3>Pro Package</h3>
+        <div class="apf-price-amount">Custom <span>pricing</span></div>
+        <ul class="apf-price-features">
+          <li>Unlimited pages</li>
+          <li>Full digital marketing</li>
+          <li>Dedicated account manager</li>
+          <li>Monthly strategy calls</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="contact.html" class="apf-price-btn">Contact Us</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="apf-cta-section">
+    <h2>Not Sure Which Package?</h2>
+    <p>Talk to us and we will recommend the right solution for your business and budget.</p>
+    <a href="contact.html" class="apf-btn-dark">Book Free Consultation</a>
+  </div>
+</div>
+ 
+<!--Header section-->
+
+<div class="apf-header">
+  <div class="apf-nav-inner">
+
+  
+
+      <div class="apf-logo-text">
+        <div class="apf-logo-top">AN</div>
+        <div class="apf-logo-bottom">PixelForge</div>
+      </div>
+    </a>
+
+    <ul class="apf-nav-links">
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="About.html">About</a></li>
+      <li><a href="Services.html">Services</a></li>
+      <li><a href="Portfolio.html">Portfolio</a></li>
+      <li><a href="Blog.html">Blog</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+
+   </body>
+</html>
